@@ -28,7 +28,7 @@ def normalize(base, x):
         else:
             c += 1
     if c > 1:
-        return str(x)[c:] + " * "+str(base)+"^(-"+str(c)+")"
+        return str(x)[c:] + " * "+str(base)+"^(-"+dict[str(c)]+")"
     return str(x)
 
 def baseconvfloatwperiod(base, x):
