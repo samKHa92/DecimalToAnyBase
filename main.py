@@ -111,6 +111,8 @@ def baseconv(base, x, c):
         r = z % base
         z //= base
         res = dict[str(r)] + res
+    if res == "":
+        res = "0"
     if len(str(y).split(".")) == 2:
         flop = baseconvfloatwperiod(base,float("0."+str(x).split(".")[1]))
         flo = baseconvfloat(base,float("0."+str(x).split(".")[1]),c)
@@ -141,4 +143,4 @@ def baseconv(base, x, c):
             print("Normalized conversion: " + res)
 
 
-baseconv(16, 37.001, 3)
+baseconv(14, 0.004, 24)
