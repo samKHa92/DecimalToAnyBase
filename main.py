@@ -84,7 +84,7 @@ def baseconvfloat(base, x, c):
             # lst[d] = dict[str(int(get_key_from_value(dict,res[d])[0])+1)]
             if d >= cc:
                 lst[d] = "0"
-            lst[d-1] = dict[str(int(get_key_from_value(dict, res[d-1])[0])+1)]
+                lst[d-1] = dict[str(int(get_key_from_value(dict, res[d-1])[0])+1)]
             res = lsttostr(lst)
             lst = lst[:len(lst)-counter]
             # return lsttostr(lst)[:cc], False
@@ -94,17 +94,17 @@ def baseconvfloat(base, x, c):
 
 def baseconv(base, x, c):
     y = abs(x)
-    z = int(str(x).split(".")[0])
+    z = int(str(y).split(".")[0])
     res = ""
     while z != 0:
         r = z % base
         z //= base
         res = dict[str(r)] + res
-    if len(str(x).split(".")) == 2:
+    if len(str(y).split(".")) == 2:
         flop = baseconvfloatwperiod(base,float("0."+str(x).split(".")[1]))
         flo = baseconvfloat(base,float("0."+str(x).split(".")[1]),c)
         res1 = res
-        if flo[1] == True:
+        if flo[1]:
             res1 = str(int(res)+1)
         if x < 0:
             print("Exact conversion: " + "-"+res+"."+flop)
@@ -121,4 +121,4 @@ def baseconv(base, x, c):
             print("Rounded conversion: " + res)
 
 
-baseconv(14, 8.123, 4)
+baseconv(35, 37.123, 23)
