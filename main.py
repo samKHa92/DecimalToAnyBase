@@ -5,10 +5,12 @@ decimal number to be converted and 'c' is the index of the digit on which you wa
 
 
 dict = {}
+
 for i in range(0,10):
     dict[str(i)] = str(i)
 for i in range(10,36):
     dict[str(i)]=chr(55+i)
+
 print("\nCalculating...\n")
 
 def get_key_from_value(d, val):
@@ -78,8 +80,6 @@ def baseconvfloat(base, x, c):
                 zs += "0"
             y += float("0."+zs+"1")
         y = float("0."+str(y).split('.')[1][:exp])
-        # if y == 0:
-        #     return res[:cc], False
         c -= 1
     counter = 0
     lst = []
@@ -92,13 +92,11 @@ def baseconvfloat(base, x, c):
             lst[d - 1] = dict[str(int(get_key_from_value(dict, res[d - 1])[0]) + 1)]
             res = lsttostr(lst)
         elif int(get_key_from_value(dict,res[d])[0]) >= base // 2:
-            # lst[d] = dict[str(int(get_key_from_value(dict,res[d])[0])+1)]
             if d >= cc:
                 lst[d] = "0"
                 lst[d-1] = dict[str(int(get_key_from_value(dict, res[d-1])[0])+1)]
             res = lsttostr(lst)
             lst = lst[:len(lst)-counter]
-            # return lsttostr(lst)[:cc], False
         else:
             return lsttostr(lst)[:cc], False
     return "0", True
@@ -125,18 +123,15 @@ def baseconv(base, x, c):
             print("Exact conversion: " + "-"+res+"."+flop)
             print("Rounded conversion: " + "-" + res1 + "." + flo[0])
             print("Normalized conversion: " + "-" + res + " + " + normalize(base, flopp))
-
         else:
             print("Exact conversion: " + res + "." + flop)
             print("Rounded conversion: " + res1 + "." + flo[0])
             print("Normalized conversion: " + res + " + " + normalize(base, flopp))
-
     else:
         if x < 0:
             print("Exact conversion: " + "-"+res)
             print("Rounded conversion: " + "-" + res)
             print("Normalized conversion: " + "-"+res)
-
         else:
             print("Exact conversion: " + res)
             print("Rounded conversion: " + res)
