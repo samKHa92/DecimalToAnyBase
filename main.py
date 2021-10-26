@@ -9,7 +9,7 @@ for i in range(0,10):
     dict[str(i)] = str(i)
 for i in range(10,36):
     dict[str(i)]=chr(55+i)
-print("Calculating...")
+print("\nCalculating...\n")
 
 def get_key_from_value(d, val):
     return [k for k, v in d.items() if v == val]
