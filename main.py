@@ -20,6 +20,17 @@ def lsttostr(lst):
         stri += str(x)
     return stri
 
+def normalize(base, x):
+    c = 0
+    for d in str(x):
+        if d != "0":
+            break
+        else:
+            c += 1
+    if c > 1:
+        return str(x)[c:] + " * "+str(base)+"^(-"+str(c)+")"
+    return str(x)
+
 def baseconvfloatwperiod(base, x):
     fr = str(x).split('.')[1]
     exp = len(fr)
@@ -104,21 +115,30 @@ def baseconv(base, x, c):
         flop = baseconvfloatwperiod(base,float("0."+str(x).split(".")[1]))
         flo = baseconvfloat(base,float("0."+str(x).split(".")[1]),c)
         res1 = res
+        lfl = [x for x in flop if x != "{" and x != "}"]
+        flopp = lsttostr(lfl)
         if flo[1]:
             res1 = str(int(res)+1)
         if x < 0:
             print("Exact conversion: " + "-"+res+"."+flop)
             print("Rounded conversion: " + "-" + res1 + "." + flo[0])
+            print("Normalized conversion: " + "-" + res + " + " + normalize(base, flopp))
+
         else:
             print("Exact conversion: " + res + "." + flop)
             print("Rounded conversion: " + res1 + "." + flo[0])
+            print("Normalized conversion: " + res + " + " + normalize(base, flopp))
+
     else:
         if x < 0:
             print("Exact conversion: " + "-"+res)
             print("Rounded conversion: " + "-" + res)
+            print("Normalized conversion: " + "-"+res)
+
         else:
             print("Exact conversion: " + res)
             print("Rounded conversion: " + res)
+            print("Normalized conversion: " + res)
 
 
-baseconv(35, 37.123, 23)
+baseconv(16, 37.001, 3)
