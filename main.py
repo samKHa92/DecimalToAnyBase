@@ -3,6 +3,7 @@ use the function baseconv(base, x, c), where 'base' is system base where you wan
 decimal number to be converted and 'c' is the index of the digit on which you want to approximate the converted number. 
 '''
 
+from itertools import dropwhile
 
 dict = {}
 
@@ -115,17 +116,24 @@ def baseconv(base, x, c):
         flop = baseconvfloatwperiod(base,float("0."+str(x).split(".")[1]))
         flo = baseconvfloat(base,float("0."+str(x).split(".")[1]),c)
         res1 = res
+        floo = flo[0]
+        lsfl = []
+        for i in floo[::-1]:
+            lsfl.append(str(i))
+        lsfl = list(dropwhile(lambda x: x == "0", lsfl))
+        lsfl.reverse()
+        floo = lsttostr(lsfl)
         lfl = [x for x in flop if x != "{" and x != "}"]
         flopp = lsttostr(lfl)
         if flo[1]:
             res1 = str(int(res)+1)
         if x < 0:
             print("Exact conversion: " + "-"+res+"."+flop)
-            print("Rounded conversion: " + "-" + res1 + "." + flo[0])
+            print("Rounded conversion: " + "-" + res1 + "." + floo)
             print("Normalized conversion: " + "-" + res + " + " + normalize(base, flopp))
         else:
             print("Exact conversion: " + res + "." + flop)
-            print("Rounded conversion: " + res1 + "." + flo[0])
+            print("Rounded conversion: " + res1 + "." + floo)
             print("Normalized conversion: " + res + " + " + normalize(base, flopp))
     else:
         if x < 0:
@@ -138,4 +146,4 @@ def baseconv(base, x, c):
             print("Normalized conversion: " + res)
 
 
-baseconv(14, 0.004, 24)
+baseconv(14, 0.004, 17)
